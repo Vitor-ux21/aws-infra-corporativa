@@ -1,0 +1,12 @@
+# Arquivos locais do Terraform
+*/.terraform/
+
+# Estado da infraestrutura
+*.tfstate
+.tfstate.
+crash.log
+
+# Credenciais e segredos
+.env
+*.pem
+*.key
