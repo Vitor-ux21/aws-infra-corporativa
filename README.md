@@ -1,23 +1,41 @@
-# Infraestrutura Corporativa AWS
+# AWS Corporate Infrastructure with Terraform
 
-## Objetivo
-Construir uma infraestrutura de TI na AWS,
-com foco em redes, Linux, segurança e automação.
+## Overview
 
-## Tecnologias
-- AWS VPC
-- Amazon EC2
-- Linux
+Projeto de estudo de infraestrutura em nuvem utilizando Terraform e AWS,
+com foco em redes, segmentação e segurança.
+
+## Architecture
+
+- VPC: 10.0.0.0/16
+- Subnet pública: 10.0.1.0/24
+- Subnet privada: 10.0.2.0/24
+- Internet Gateway para conectividade da subnet pública
+- Tabelas de rotas separadas
+- Security Group com regras HTTP e HTTPS
+
+## Technologies
+
+- AWS
 - Terraform
 - AWS CLI
 - Git
 
-## Implementação
-- Planejamento de endereçamento IPv4
-- Segmentação de sub-redes
-- Configuração de rotas e segurança
-- Monitoramento e diagnóstico de incidentes
+## Validation
 
-## Controle de custos
-Desenvolvimento local e revisão dos custos antes
-de criar recursos na AWS.
+A configuração foi validada localmente com:
+
+bash
+terraform fmt
+terraform validate
+
+
+## Current Status
+
+A infraestrutura está definida como código e validada localmente.
+Ainda não foi implantada na AWS.
+
+## Cost and Security
+
+Nenhum recurso foi criado na AWS neste projeto até o momento.
+As regras de acesso e os custos deverão ser revisados antes de qualquer implantação
