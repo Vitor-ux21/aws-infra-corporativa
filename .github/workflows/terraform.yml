@@ -1,0 +1,56 @@
+name: Terraform CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# Permissão mínima: o workflow só lê o repositório
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Formato e validação
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Instalar o Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+
+      - name: Verificar formatação
+        run: terraform fmt -check -recursive
+
+      - name: Inicializar (sem backend, sem credenciais AWS)
+        run: terraform init -backend=false
+
+      - name: Validar a configuração
+        run: terraform validate
+
+  security:
+    name: Análise de segurança (Checkov)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Instalar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar o Checkov
+        run: pip install checkov
+
+      # --soft-fail: mostra os achados sem reprovar o workflow.
+      # Quando os achados forem tratados ou documentados, remover a flag.
+      - name: Executar o Checkov
+        run: checkov -d terraform --framework terraform --soft-fail

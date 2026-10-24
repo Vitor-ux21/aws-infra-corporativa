@@ -3,6 +3,7 @@
 # ---------------------------------------------------------------
 
 resource "aws_vpc" "corporativa" {
+  #checkov:skip=CKV2_AWS_11:Flow Logs exigem destino (CloudWatch ou S3) com custo; planejado para a Fase 6 do roadmap
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
@@ -79,4 +80,14 @@ resource "aws_route_table" "privada" {
 resource "aws_route_table_association" "privada" {
   subnet_id      = aws_subnet.privada.id
   route_table_id = aws_route_table.privada.id
+}
+
+# Security Group padrão da VPC sem nenhuma regra: bloqueia todo o tráfego.
+# Recursos devem usar sempre um Security Group próprio.
+resource "aws_default_security_group" "padrao" {
+  vpc_id = aws_vpc.corporativa.id
+
+  tags = {
+    Name = "sg-padrao-bloqueado"
+  }
 }
