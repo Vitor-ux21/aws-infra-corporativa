@@ -50,7 +50,6 @@ jobs:
       - name: Instalar o Checkov
         run: pip install checkov
 
-      # --soft-fail: mostra os achados sem reprovar o workflow.
       # Quando os achados forem tratados ou documentados, remover a flag.
       - name: Executar o Checkov
-        run: checkov -d terraform --framework terraform --soft-fail
+        run: checkov -d terraform --framework terraform
