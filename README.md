@@ -29,6 +29,7 @@ flowchart TB
 | Security Group web | Entrada 80 e 443 de qualquer origem; saída restrita a 80, 443 e à porta da aplicação |
 | Security Group app | Entrada na porta 8080 somente do SG web |
 | NACL privada | Stateless; permite somente a aplicação (8080) vinda da subnet pública e as respostas |
+| Flow Logs | Registra o tráfego aceito e rejeitado da VPC no CloudWatch Logs (retenção de 365 dias) |
 
 ## Estrutura do repositório
 
@@ -46,6 +47,7 @@ flowchart TB
     ├── variables.tf   # CIDRs, região, zona de disponibilidade
     ├── main.tf        # VPC, subnets, IGW e route tables
     ├── security.tf    # Security Groups e NACL
+    ├── flow_logs.tf   # Flow Logs da VPC (CloudWatch Logs, retenção de 365 dias)
     └── outputs.tf     # IDs dos recursos
 ```
 
