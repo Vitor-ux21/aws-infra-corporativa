@@ -36,7 +36,7 @@ flowchart TB
 ```
 .
 ├── README.md
-├── .github/workflows/terraform.yml   # CI: fmt, validate e Checkov
+├── .github/workflows/terraform.yml   # CI: fmt, validate, testes e Checkov
 ├── docs/
 │   ├── 01-plano-de-enderecamento.md
 │   ├── 03-tabelas-de-roteamento.md
@@ -65,6 +65,7 @@ cd terraform
 terraform fmt -check -recursive
 terraform init -backend=false
 terraform validate
+terraform test
 cd ..
 checkov -d terraform --framework terraform
 ```
@@ -78,6 +79,7 @@ checkov -d terraform --framework terraform
 - [x] CI no GitHub Actions: formatação e validação do Terraform, análise de segurança com Checkov (reprova o workflow em caso de falha)
 - [x] Achados do Checkov tratados: 56 verificações aprovadas, 0 falhas e 4 exceções justificadas no código
 - [x] VPC Flow Logs implementados (CloudWatch Logs, retenção de 365 dias)
+- [x] Testes da rede com provider simulado (`terraform test`, 9 testes, sem credenciais e sem custo)
 - [ ] Testes com LocalStack, Docker e GNS3
 - [ ] Segunda VPC e peering
 - [ ] VPN site-to-site simulada (WireGuard)
