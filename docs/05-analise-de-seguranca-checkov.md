@@ -16,7 +16,8 @@ Cada achado recebeu uma decisão: corrigir, aceitar com justificativa ou adiar.
 | CKV_AWS_382: saída para 0.0.0.0/0 em todas as portas | sg-web | **Corrigido** | A saída foi restrita a 80 e 443 (internet) e à porta da aplicação, apenas para a subnet privada |
 | CKV_AWS_260: entrada para 0.0.0.0/0 na porta 80 | sg-web | **Aceito** | Servidor web público; a porta 80 serve para redirecionar para HTTPS |
 | CKV2_AWS_12: Security Group padrão da VPC deve bloquear todo o tráfego | VPC | **Corrigido** | Adicionado `aws_default_security_group` sem nenhuma regra |
-| CKV2_AWS_11: VPC Flow Logs ativado | VPC | **Adiado** | Exige destino (CloudWatch ou S3) com custo; o projeto é gratuito. Planejado para a Fase 6 |
+| CKV2_AWS_11: VPC Flow Logs ativado | VPC | **Corrigido** | Flow Logs implementados com CloudWatch Logs (retencao de 365 dias) em `terraform/flow_logs.tf`. O custo so existe se houver `apply` |
+| CKV_AWS_158: Log group criptografado com KMS | CloudWatch Log Group | **Exceção justificada** | Sem KMS no laboratorio para evitar custo e complexidade |
 | CKV2_AWS_5: Security Group anexado a um recurso | sg-web e sg-app | **Aceito (temporário)** | Os servidores ainda não existem; serão criados em fase futura |
 
 Os itens aceitos e adiados estão registrados no código com `#checkov:skip=<id>:<motivo>`, para que a decisão fique visível e auditável.

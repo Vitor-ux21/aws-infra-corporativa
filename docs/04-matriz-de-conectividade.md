@@ -59,5 +59,5 @@ Um fluxo só funciona se houver rota e se as duas camadas de filtro permitirem. 
 - [ ] A subnet pública usa a NACL padrão (permite tudo). Criar uma `nacl-publica` com regras explícitas.
 - [x] Saída do sg-web restrita a 80, 443 e à porta da aplicação (resolvido na análise do Checkov).
 - [ ] Apenas uma zona de disponibilidade.
-- [ ] VPC Flow Logs para confirmar na prática o que foi aceito e rejeitado.
+- [x] VPC Flow Logs para confirmar na prática o que foi aceito e rejeitado.
 - [ ] Validar os casos desta matriz com testes reais (ping, curl, nmap) no laboratório.
