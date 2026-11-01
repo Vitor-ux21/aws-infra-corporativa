@@ -24,7 +24,7 @@ Os itens aceitos e adiados estão registrados no código com `#checkov:skip=<id>
 
 ## 3. Resultado esperado após as correções
 
-Zero reprovações, com 4 exceções documentadas no código. Confirmar rodando o Checkov novamente e, se for o caso, remover `--soft-fail` do workflow.
+Zero reprovações, com 4 exceções documentadas no código. O Checkov roda no CI sem `--soft-fail`: qualquer falha nova reprova o pull request.
 
 ## 4. Observação sobre o DNS
 
