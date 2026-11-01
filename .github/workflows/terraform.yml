@@ -35,6 +35,9 @@ jobs:
       - name: Validar a configuração
         run: terraform validate
 
+      - name: Executar os testes da rede (provider simulado)
+        run: terraform test
+
   security:
     name: Análise de segurança (Checkov)
     runs-on: ubuntu-latest
