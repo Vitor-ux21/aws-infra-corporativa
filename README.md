@@ -65,6 +65,8 @@ cd terraform
 terraform fmt -check -recursive
 terraform init -backend=false
 terraform validate
+cd ..
+checkov -d terraform --framework terraform
 ```
 
 ## Status
@@ -73,8 +75,9 @@ terraform validate
 - [x] Security Groups encadeados e NACL da subnet privada
 - [x] Plano de endereçamento e tabelas de roteamento documentados
 - [x] Matriz de conectividade
-- [x] CI no GitHub Actions: formatação e validação do Terraform, análise de segurança com Checkov (modo informativo)
-- [x] Achados do Checkov tratados (corrigidos ou justificados no código)
+- [x] CI no GitHub Actions: formatação e validação do Terraform, análise de segurança com Checkov (reprova o workflow em caso de falha)
+- [x] Achados do Checkov tratados: 56 verificações aprovadas, 0 falhas e 4 exceções justificadas no código
+- [x] VPC Flow Logs implementados (CloudWatch Logs, retenção de 365 dias)
 - [ ] Testes com LocalStack, Docker e GNS3
 - [ ] Segunda VPC e peering
 - [ ] VPN site-to-site simulada (WireGuard)
